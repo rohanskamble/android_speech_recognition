@@ -19,6 +19,7 @@ import android.text.format.DateUtils;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.Date;
@@ -29,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 1;
     private TextToSpeech tts;
     private SpeechRecognizer speechRecog;
+    private Object v;
+    public void Click(View v){
+        Button b1=(Button)findViewById(R.id.bt1);
+        Intent a=new Intent(this,Info.class);
+        startActivity(a);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        
+
         initializeTextToSpeech();
         initializeSpeechRecognizer();
     }
@@ -138,9 +145,12 @@ public class MainActivity extends AppCompatActivity {
 //        Second: What is the time?
 //        Third: Is the earth flat or a sphere?
 //        Fourth: Open a browser and open url
+        //fifth:open google
+        //sixth:open gmail
+        //seven: open  facebook
         if(result_message.indexOf("what") != -1){
             if(result_message.indexOf("your name") != -1){
-                speak("My Name is Mr.Android. Nice to meet you!");
+                speak("My Name is Shubh. Nice to meet you!");
             }
             if (result_message.indexOf("time") != -1){
                 String time_now = DateUtils.formatDateTime(this, new Date().getTime(),DateUtils.FORMAT_SHOW_TIME);
@@ -148,10 +158,22 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if (result_message.indexOf("earth") != -1){
             speak("Don't be silly, The earth is a sphere. As are all other planets and celestial bodies");
-        } else if (result_message.indexOf("browser") != -1){
+        } else if (result_message.indexOf("youtube") != -1){
             speak("Opening a browser right away master.");
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/AnNJPf-4T70"));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com"));
             startActivity(intent);
+        }else if(result_message.indexOf("google")!=-1){
+            speak("Opening google.");
+            Intent i=new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.google.com"));
+            startActivity(i);
+        }else if(result_message.indexOf("gmail")!=-1){
+            speak("Opening gmail.");
+            Intent g=new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.gmail.com"));
+            startActivity(g);
+        }else if(result_message.indexOf("facebook")!=-1){
+            speak("Opening facebook.");
+            Intent g=new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.facebook.com"));
+            startActivity(g);
         }
     }
 
@@ -164,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 } else {
                     tts.setLanguage(Locale.US);
-                    speak("Hello there, I am ready to start our conversation");
+                    speak("Hello there, I am ready to start our conversation please make sure your interenet is connected.");
                 }
             }
         });
