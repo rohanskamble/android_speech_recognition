@@ -148,34 +148,48 @@ public class MainActivity extends AppCompatActivity {
         //fifth:open google
         //sixth:open gmail
         //seven: open  facebook
-        if(result_message.indexOf("what") != -1){
-            if(result_message.indexOf("your name") != -1){
+        if (result_message.indexOf("what") != -1) {
+            if (result_message.indexOf("your name") != -1) {
                 speak("My Name is Shubh. Nice to meet you!");
             }
-            if (result_message.indexOf("time") != -1){
-                String time_now = DateUtils.formatDateTime(this, new Date().getTime(),DateUtils.FORMAT_SHOW_TIME);
+            if (result_message.indexOf("time") != -1) {
+                String time_now = DateUtils.formatDateTime(this, new Date().getTime(), DateUtils.FORMAT_SHOW_TIME);
                 speak("The time is now: " + time_now);
             }
-        } else if (result_message.indexOf("earth") != -1){
+            if (result_message.indexOf("date") != -1) {
+                String date_now = DateUtils.formatDateTime(this, new Date().getDate(), DateUtils.FORMAT_SHOW_DATE);
+                speak("The date is now: " + date_now);
+            }
+        } else if (result_message.indexOf("earth") != -1) {
             speak("Don't be silly, The earth is a sphere. As are all other planets and celestial bodies");
-        } else if (result_message.indexOf("youtube") != -1){
+        } else if (result_message.indexOf("youtube") != -1) {
             speak("Opening a browser right away master.");
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com"));
             startActivity(intent);
-        }else if(result_message.indexOf("google")!=-1){
+        } else if (result_message.indexOf("google") != -1) {
             speak("Opening google.");
-            Intent i=new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.google.com"));
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"));
             startActivity(i);
-        }else if(result_message.indexOf("gmail")!=-1){
+        } else if (result_message.indexOf("gmail") != -1) {
             speak("Opening gmail.");
-            Intent g=new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.gmail.com"));
+            Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.gmail.com"));
             startActivity(g);
-        }else if(result_message.indexOf("facebook")!=-1){
+        } else if (result_message.indexOf("facebook") != -1) {
             speak("Opening facebook.");
-            Intent g=new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.facebook.com"));
+            Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com"));
             startActivity(g);
+        } else if (result_message.indexOf("whatsapp") != -1) {
+            speak("Opening whatsapp.");
+           /* Intent i =getPackageManager().getLaunchIntentForPackage("com.Whatsapp");
+            startActivity(i);*/
+            String url = "https://api.whatsapp.com/send?phone=9137234618";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+            }
+
         }
-    }
+
 
     private void initializeTextToSpeech() {
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
