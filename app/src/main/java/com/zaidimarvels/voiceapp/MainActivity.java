@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
     private TextToSpeech tts;
     private SpeechRecognizer speechRecog;
     private Object v;
-    public void Click(View v){
+    /*public void Click(View v){
         Button b1=(Button)findViewById(R.id.bt1);
         Intent a=new Intent(this,Info.class);
         startActivity(a);
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         //fifth:open google
         //sixth:open gmail
         //seven: open  facebook
+        //
         if (result_message.indexOf("what") != -1) {
             if (result_message.indexOf("your name") != -1) {
                 speak("My Name is Shubh. Nice to meet you!");
@@ -178,14 +179,32 @@ public class MainActivity extends AppCompatActivity {
             speak("Opening facebook.");
             Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com"));
             startActivity(g);
-        } else if (result_message.indexOf("whatsapp") != -1) {
+        } else if (result_message.indexOf("twitter") != -1) {
+            speak("Opening twitter.");
+            Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.twitter.com"));
+            startActivity(g);
+        } else if (result_message.indexOf("national college") != -1) {
+            speak("Opening RDNC site.");
+            Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.rdnational.ac.in"));
+            startActivity(g);
+        } else if (result_message.indexOf("pubg") != -1) {
+            speak("Opening pubg.");
+            Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.tencent.ig"));
+            startActivity(g);
+        } else if (result_message.indexOf("mumbaiuniversity") != -1) {
+            speak("Opening RDNC site.");
+            Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.mu.ac.in"));
+            startActivity(g);
+        }  else if (result_message.indexOf("whatsapp") != -1) {
+
             speak("Opening whatsapp.");
-           /* Intent i =getPackageManager().getLaunchIntentForPackage("com.Whatsapp");
-            startActivity(i);*/
             String url = "https://api.whatsapp.com/send?phone=9137234618";
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             startActivity(i);
+            /* Intent i =getPackageManager().getLaunchIntentForPackage("com.Whatsapp");
+            startActivity(i);*/
+
             }
 
         }
