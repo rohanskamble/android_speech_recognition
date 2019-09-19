@@ -196,14 +196,10 @@ public class MainActivity extends AppCompatActivity {
             Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.mu.ac.in"));
             startActivity(g);
         }  else if (result_message.indexOf("whatsapp") != -1) {
-
-            speak("Opening whatsapp.");
-            String url = "https://api.whatsapp.com/send?phone=9137234618";
+            String url = "https://api.whatsapp.com/send?phone="+"9137234618";
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             startActivity(i);
-            /* Intent i =getPackageManager().getLaunchIntentForPackage("com.Whatsapp");
-            startActivity(i);*/
 
             }
 
