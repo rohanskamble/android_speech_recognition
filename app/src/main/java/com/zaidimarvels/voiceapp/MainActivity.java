@@ -1,6 +1,7 @@
 package com.zaidimarvels.voiceapp;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.speech.tts.TextToSpeech;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
@@ -183,7 +185,31 @@ public class MainActivity extends AppCompatActivity {
             speak("Opening twitter.");
             Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.twitter.com"));
             startActivity(g);
-        } else if (result_message.indexOf("national college") != -1) {
+        }else if (result_message.indexOf("play store") != -1) {
+            speak("Opening play store.");
+            Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store?utm_source=apac_Med&utm_medium=hasem&utm_content=Sep0419&utm_campaign=Evergreen&pcampaignid=MKT-DR-apac-in-1003227-Med-hasem-py-Evergreen-Sep0419-Text_Search_BKWS-BKWS%7cONSEM_kwid_43700012164778770_creativeid_113397194705_device_c_kwd_kwd-41905086_geoid_1007785_network_g&gclid=CjwKCAjw8ZHsBRA6EiwA7hw_sZR3N4pqqM1hZTMIPyLBLz9M-n_pN-gvKWbepppC9MS_-DZ9tSPVcRoCdoEQAvD_BwE&gclsrc=aw.ds"));
+            startActivity(g);
+        }else if (result_message.indexOf("instagram") != -1) {
+            speak("Opening instagram.");
+            Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com"));
+            startActivity(g);
+        } else if (result_message.indexOf("amazon") != -1) {
+            speak("Opening amazon.");
+            Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.amazon.com"));
+            startActivity(g);
+        }else if (result_message.indexOf("tiktok") != -1) {
+            speak("Opening tiktok.");
+            Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.tiktok.com/en/"));
+            startActivity(g);
+        }else if (result_message.indexOf("salil bhagat") != -1) {
+            speak("Opening account.");
+            Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/salil.bhagat"));
+            startActivity(g);
+        }else if (result_message.indexOf("indeed") != -1) {
+            speak("Opening indeed.");
+            Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.indeed.co.in"));
+            startActivity(g);
+        }else if (result_message.indexOf("national college") != -1) {
             speak("Opening RDNC site.");
             Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.rdnational.ac.in"));
             startActivity(g);
@@ -191,15 +217,15 @@ public class MainActivity extends AppCompatActivity {
             speak("Opening pubg.");
             Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.tencent.ig"));
             startActivity(g);
-        } else if (result_message.indexOf("mumbaiuniversity") != -1) {
+        } else if (result_message.indexOf("mumbai university") != -1) {
             speak("Opening RDNC site.");
             Intent g = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.mu.ac.in"));
             startActivity(g);
         }  else if (result_message.indexOf("whatsapp") != -1) {
-            String url = "https://api.whatsapp.com/send?phone="+"9137234618";
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse(url));
-            startActivity(i);
+            //String url = "https://api.whatsapp.com/send?phone="+"9137234618";
+            //Intent i = new Intent(Intent.ACTION_VIEW);
+            //i.setData(Uri.parse(url));
+            //startActivity(i);
 
             }
 
@@ -263,5 +289,21 @@ public class MainActivity extends AppCompatActivity {
 //        Reinitialize the recognizer and tts engines upon resuming from background such as after openning the browser
         initializeSpeechRecognizer();
         initializeTextToSpeech();
+    }
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Voice App")
+                .setMessage("Are you sure you want to close this app?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }
